@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isShowingSquare = false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack{
+            Button ("Tape Me"){
+                withAnimation{
+                    self.isShowingSquare.toggle()
+                }
+            }
+            if(isShowingSquare){
+                Rectangle()
+                    .fill(Color.purple)
+                    .frame(width: 200, height: 200, alignment: .center)
+                    .transition(.asymmetric(insertion: .scale, removal: .opacity))
+            }
+        }
     }
 }
 
